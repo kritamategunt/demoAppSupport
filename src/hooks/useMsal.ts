@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import { msalInstance } from "./msalConfig";
+import { useRouter } from 'next/navigation';
 
 const useMsal = (): {
   isAuthenticated: boolean;
@@ -10,6 +11,7 @@ const useMsal = (): {
 } => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<AccountInfo | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const accounts = msalInstance.getAllAccounts();
@@ -32,6 +34,7 @@ const useMsal = (): {
       setUser(res.account);
       console.log("Login Success set user")
       console.log({"Login Success set user":res})
+      
     } catch (error) {
       console.log("Login error:", error);
     }

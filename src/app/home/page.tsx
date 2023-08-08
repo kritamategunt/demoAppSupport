@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-function Home() {
+const Home: React.FC = () => {
   return (
     <Grid
       sx={{
@@ -18,6 +18,9 @@ function Home() {
       >
         <Typography fontSize={35} fontWeight={600} textAlign={"center"}>
           App support
+        </Typography>
+        <Typography fontSize={25} fontWeight={500} textAlign={"center"}>
+          ERP system
         </Typography>
        
       </Box>

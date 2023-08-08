@@ -6,13 +6,14 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { List, ListItemText, styled } from "@mui/material";
-import Logo from "../img/axonsLogo_white.png";
+import Logo from "../../../../public/axonsLogo_white.png";
 import HomeIcon from "@mui/icons-material/Home";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import PaidIcon from "@mui/icons-material/Paid";
 import PriceChangeIcon from "@mui/icons-material/PriceChange";
 import UploadFileRoundedIcon from '@mui/icons-material/UploadFileRounded';
+import Image from "next/image";
 
 function SideBar() {
   const [open, setOpen] = useState<boolean>(false);
@@ -45,18 +46,18 @@ function SideBar() {
         }}
       >
         <div style={{ width: "250px" }}>
-          {/* <Box textAlign="center" p={5}>
-            <img src={Logo} style={{ width: "100px" }} alt="logo" />
-          </Box> */}
+          <Box textAlign="center" p={5}>
+            <Image src={Logo} alt="axons logo" width="100"/>
+          </Box>
           <Divider />
           <List>
-            {/* <LinkStyle to="/dashboard/home">
+          
               <ListItem>
                 <HomeIcon sx={{ mx: "5px" }} />
                 <ListItemText primary={"หน้าแรก"} />
               </ListItem>
-            </LinkStyle>
-            */}
+            
+           
           </List>
         </div>
       </SwipeableDrawer>

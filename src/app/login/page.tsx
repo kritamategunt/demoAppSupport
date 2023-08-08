@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useEffect } from "react";
+import { useRouter } from 'next/router';
 import useMsal from "../../hooks/useMsal";
 import { AccountInfo } from "@azure/msal-browser";
 import { json } from "stream/consumers";
+import logo from "../../../public/axonsLogo.png";
 import {
   Button,
   Card,
@@ -13,8 +15,9 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
   const { isAuthenticated, user, login, logout } = useMsal();
   console.log({ user })
   // return (
@@ -31,18 +34,8 @@ const Home: React.FC = () => {
   //   </div>
 
   // );
-  useEffect(() => {
-    // This function will be executed after the component is mounted (similar to componentDidMount)
 
-    // Perform any side effects here, like fetching data, setting up subscriptions, etc.
-    console.log('Component is mounted.');
 
-    // The function returned in useEffect will be executed when the component is unmounted (similar to componentWillUnmount)
-    return () => {
-      console.log('Component will unmount.');
-      // Clean up any resources, subscriptions, etc. here
-    };
-  }, []); // T
 
   return (
     <>
@@ -81,7 +74,10 @@ const Home: React.FC = () => {
                   style={{
                     width: 100,
                     marginBottom: 10,
-                  }} */}
+                  }}
+                  /> */}
+                  <Image src={logo} alt="axons logo" width={100}/>
+                  
               </Grid>
               <Grid>
                 <Typography
@@ -90,6 +86,7 @@ const Home: React.FC = () => {
                   sx={{ mt: "10px" }}
                 >
                   App support
+                  {isAuthenticated}
                 </Typography>
               </Grid>
               <Grid sx={{ mb: "5%" }}>
@@ -115,11 +112,13 @@ const Home: React.FC = () => {
                 </FormControl>
               </Grid>
               {isAuthenticated ? (
+
                 <div>
                   <h1>Hello, {user ? user.name : "User"}!</h1>
                   {JSON.stringify(user)}
                   <button onClick={logout}>Logout</button>
                 </div>
+
               ) : (
                 <Button
                   variant="contained"
@@ -130,15 +129,16 @@ const Home: React.FC = () => {
                   เข้าสู่ระบบ
                 </Button>
               )}
+             
 
 
             </Card>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid >
 
     </>
   );
 };
 
-export default Home;
+export default Login;

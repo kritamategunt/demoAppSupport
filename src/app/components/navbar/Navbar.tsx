@@ -15,11 +15,12 @@ import {
 import SideBar from "../sidebar/SideBar";
 import useMsal from "@/hooks/useMsal";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import Login from "@/app/login/page";
 
 const navbarLink = [
   { id: 1, title: "Home", url: "/" },
   { id: 2, title: "login AD beta", url: "/login" },
-  
+
 ];
 const Navbar: React.FC = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -55,8 +56,15 @@ const Navbar: React.FC = () => {
   };
 
   return (
+    // <div>
+    //               <h1>Hello, {user ? user.name : "User"}!</h1>
+    //               {JSON.stringify(user)}
+    //               <button onClick={logout}>Logout</button>
+    //             </div>
+
     <AppBar position="sticky">
-      <Toolbar sx={{ backgroundColor: "#074E9F", color: "white" }}>
+
+      {!isAuthenticated ? (<Login/>) : (<div>  <Toolbar sx={{ backgroundColor: "#074E9F", color: "white" }}>
         <SideBar />
         <div
           style={{
@@ -101,13 +109,14 @@ const Navbar: React.FC = () => {
               <Icon style={{ marginInline: "5px" }}>
                 <ExitToAppIcon></ExitToAppIcon>
               </Icon>
-              <Typography textAlign="center" onClick={handleLogoutPopup}>
+              <Typography textAlign="center" onClick={logout}>
                 Logout
               </Typography>
             </MenuItem>
           </Menu>
         </div>
-      </Toolbar>
+      </Toolbar></div>)}
+
     </AppBar>
   );
 };
